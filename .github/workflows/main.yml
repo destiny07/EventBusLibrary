@@ -14,15 +14,11 @@ jobs:
       - name: Publish EventBus Core
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
-          # Filepath of the project to be packaged, relative to root of repository
           PROJECT_FILE_PATH: EventBus.Core/EventBus.Core.csproj
-          # NuGet package id, used for version detection & defaults to project name
-          PACKAGE_NAME: EventBus.Core
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
 
       - name: Publish EventBus RabbitMQ
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
           PROJECT_FILE_PATH: EventBus.RabbitMQ/EventBus.RabbitMQ.csproj
-          PACKAGE_NAME: EventBus.RabbitMQ
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
