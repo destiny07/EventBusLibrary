@@ -1,0 +1,1 @@
+Extracted EventBus components from [eShopOnContainers](https://github.com/dotnet-architecture/eShopOnContainers)
