@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
-		<PackageId>EventBus.Core</PackageId>
+		<PackageId>Destiny.EventBus.Core</PackageId>
 		<Version>1.0.0</Version>
 	</PropertyGroup>
 
