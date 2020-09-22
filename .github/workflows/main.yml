@@ -19,12 +19,26 @@ jobs:
         with:
           source-url: https://nuget.pkg.github.com/<organization>/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
         
       - name: Build solution and generate NuGet package
         run: |
           cd <project>
           dotnet pack -c Release -o out
       
-      - name: Push generated package to GitHub registry
-        run: dotnet nuget push ./<project>/out/*.nupkg --skip-duplicate --no-symbols true
+      - name: Publish NuGet
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+          # Filepath of the project to be packaged, relative to root of repository
+          PROJECT_FILE_PATH: EventBus.Core
+          # NuGet package id, used for version detection & defaults to project name
+          PACKAGE_NAME: EventBus.Core
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+      - name: Publish NuGet
+        uses: brandedoutcast/publish-nuget@v2.5.5
+        with:
+          # Filepath of the project to be packaged, relative to root of repository
+          PROJECT_FILE_PATH: EventBus.RabbitMQ
+          # NuGet package id, used for version detection & defaults to project name
+          PACKAGE_NAME: EventBus.RabbitMQ
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
