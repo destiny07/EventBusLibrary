@@ -11,12 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Update NuGet package
     steps:
-      - name: Build solution and generate NuGet package
-        run: |
-          cd <project>
-          dotnet pack -c Release -o out
-      
-      - name: Publish NuGet
+      - name: Publish EventBus Core
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
           # Filepath of the project to be packaged, relative to root of repository
@@ -24,11 +19,10 @@ jobs:
           # NuGet package id, used for version detection & defaults to project name
           PACKAGE_NAME: EventBus.Core
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-      - name: Publish NuGet
+
+      - name: Publish EventBus RabbitMQ
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
-          # Filepath of the project to be packaged, relative to root of repository
           PROJECT_FILE_PATH: EventBus.RabbitMQ
-          # NuGet package id, used for version detection & defaults to project name
           PACKAGE_NAME: EventBus.RabbitMQ
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
