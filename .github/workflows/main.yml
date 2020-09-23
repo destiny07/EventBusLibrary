@@ -7,9 +7,9 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
-    name: Update NuGet package
+    name: Update Core NuGet package
     steps:
     - uses: actions/checkout@v2
       
@@ -29,7 +29,7 @@ jobs:
       with:
         PROJECT_FILE_PATH: EventBus.Core/EventBus.Core.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-    
+
     - name: Publish EventBus RabbitMQ
       uses: brandedoutcast/publish-nuget@v2.5.5
       with:
